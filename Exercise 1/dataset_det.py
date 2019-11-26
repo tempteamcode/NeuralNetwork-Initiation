@@ -10,49 +10,53 @@ from torchvision import transforms
 COLORS = ['red', 'green', 'blue', 'yellow', 'lime', 'purple', 'orange', 'cyan', 'magenta']
 
 class Balls_CF_Detection(Dataset):
-    def __init__(self, dir, image_count, transform=None):
-        self.transform = transform
-        self.dir = dir
-        self.image_count = image_count
+	def __init__(self, dir, image_start, image_end=None, transform=None):
+		self.transform = transform
+		self.dir = dir
+		if not image_end:
+			image_end = image_start
+			image_start = 0
+		self.image_count = image_end - image_start
+		self.image_start = image_start
 
-    # The access is _NOT_ shuffled. The Dataloader will need
-    # to do this.
-    def __getitem__(self, index):
-        #img = io.imread("%s/img_%05d.jpg"%(self.dir,index))
-        img = Image.open("%s/img_%05d.jpg"%(self.dir,index))
-        img = np.asarray(img)
-        img = img.astype(np.float32)
-        
-        # Dims in: x, y, color
-        # should be: color, x, y
-        img = np.transpose(img, (2,0,1))
-        
-        img = torch.tensor(img)
-        if self.transform is not None:
-            img = self.transform(img)
+	# The access is _NOT_ shuffled. The Dataloader will need
+	# to do this.
+	def __getitem__(self, index):
+		#img = io.imread("%s/img_%05d.jpg"%(self.dir,index))
+		img = Image.open("%s/img_%05d.jpg"%(self.dir,index + self.image_start))
+		img = np.asarray(img)
+		img = img.astype(np.float32)
+		
+		# Dims in: x, y, color
+		# should be: color, x, y
+		img = np.transpose(img, (2,0,1))
+		
+		img = torch.tensor(img)
+		if self.transform is not None:
+			img = self.transform(img)
 
-        # Load presence and bounding boxes and split it up
-        p_bb = np.load("%s/p_bb_%05d.npy"%(self.dir,index))
-        p  = p_bb[:,0]
-        bb = p_bb[:,1:5]
-        return img, p, bb
+		# Load presence and bounding boxes and split it up
+		p_bb = np.load("%s/p_bb_%05d.npy"%(self.dir,index))
+		p  = p_bb[:,0]
+		bb = p_bb[:,1:5]
+		return img, p, bb
 
-    # Return the dataset size
-    def __len__(self):
-        return self.image_count
-        
+	# Return the dataset size
+	def __len__(self):
+		return self.image_count
+
 def main():
-    # train_dataset = Balls_CF_Detection ("./mini_balls/train", 20999,
-    #     transforms.Normalize([128, 128, 128], [50, 50, 50]))
-    train_dataset = Balls_CF_Detection ("./mini_balls/train", 20999)
+	# train_dataset = Balls_CF_Detection ("./mini_balls/train", 20999,
+	#	 transforms.Normalize([128, 128, 128], [50, 50, 50]))
+	train_dataset = Balls_CF_Detection ("./mini_balls/train", 20999)
 
-    img,p,b = train_dataset.__getitem__(42)
+	img,p,b = train_dataset.__getitem__(42)
 
-    print ("Presence:")
-    print (p)
+	print ("Presence:")
+	print (p)
 
-    print ("Pose:")
-    print (b)
+	print ("Pose:")
+	print (b)
 
 if __name__ == "__main__":
-    main()
+	main()
