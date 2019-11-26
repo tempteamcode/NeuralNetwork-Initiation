@@ -89,17 +89,17 @@ valid_loader = torch.utils.data.DataLoader(valid_dataset, batch_size=BATCHSIZE, 
 class LeNet(torch.nn.Module):
 	def __init__(self):
 		super(LeNet, self).__init__()
-		self.conv1 = torch.nn.Conv2d(3, 12, 5, 1) #(1, 20, 5, 1)
-		self.conv2 = torch.nn.Conv2d(12, 36, 5, 1) #(20, 50, 5, 1)
-		self.fc1 = torch.nn.Linear(174240//10, 400) #(4*4*50, 500)
-		self.fc2 = torch.nn.Linear(400, 9) #(500, 10)
+		self.conv1 = torch.nn.Conv2d(3, 8, 5, 1) #(3, 12, 5, 1)
+		self.conv2 = torch.nn.Conv2d(8, 12, 5, 1) #(12, 36, 5, 1)
+		self.fc1 = torch.nn.Linear(58080//10, 400) #(174240//10, 400)
+		self.fc2 = torch.nn.Linear(400, 9) #(400, 9)
 
 	def forward(self, x):
 		x = F.relu(self.conv1(x))
 		x = F.max_pool2d(x, 2, 2)
 		x = F.relu(self.conv2(x))
 		x = F.max_pool2d(x, 2, 2)
-		x = x.view(-1, 174240//10) #(-1, 4*4*50)
+		x = x.view(-1, 58080//10) #(-1, 174240//10)
 		x = F.relu(self.fc1(x))
 		x = self.fc2(x)
 		return F.sigmoid(x) #x
@@ -131,17 +131,28 @@ def calcError (net, dataloader):
 	for batch_idx, (data, labels, _) in enumerate(dataloader):
 		y = model(data)
 
+		#_, predicted = torch.max(y.data, 1)
+		#vcorrect += (predicted == labels).sum().item()
+
+		'''
 		tvals, tidx = torch.topk(y, 3)
 		res = torch.zeros(BATCHSIZE, 9)
 		res = res.scatter(1, tidx, tvals)
+		'''
+
+		res = (abs(1 - y) < 0.5)
+
+		'''
+		vcorrect += (res == (labels == 1.)).sum().item()
+		vcount += BATCHSIZE * 9
+		'''
+
+		for i in range(BATCHSIZE):
+			vcorrect += ((((res[i] != 0) == labels[i]).sum()).item() == 9)
+		vcount += BATCHSIZE
 
 		loss = crossentropy(y, labels)
 		vloss += loss.item()
-		#_, predicted = torch.max(y.data, 1)
-		for i in range(BATCHSIZE):
-			vcorrect += ((((res[i] != 0) == labels[i]).sum()).item() == 9)
-		#vcorrect += (predicted == labels).sum().item()
-		vcount += BATCHSIZE
 	return vloss/len(dataloader), 100.0*(1.0-vcorrect/vcount)
 
 
@@ -168,25 +179,35 @@ def main():
 			optimizer.zero_grad()
 			y = model(data)
 
+			#_, predicted = torch.max(y.data.cpu(), 1)
+			#running_correct += (predicted == (labels == 1.)).sum().item()
+
+			'''
 			tvals, tidx = torch.topk(y, 3)
 			res = torch.zeros(BATCHSIZE, 9)
 			res = res.scatter(1, tidx, tvals)
+			'''
 
-			loss = crossentropy(res, labels)
+			res = (abs(1 - y) < 0.5)
+
+			'''
+			running_correct += (res == (labels == 1.)).sum().item()
+			running_count += BATCHSIZE * 9
+			'''
+
+			for i in range(BATCHSIZE):
+				running_correct += ((((res[i] != 0) == labels[i]).sum()).item() == 9)
+			running_count += BATCHSIZE
+
+			loss = crossentropy(y, labels)
 			loss.backward()
 			running_loss += loss.cpu().item()
 			optimizer.step()
 
-			#_, predicted = torch.max(y.data.cpu(), 1)
-			for i in range(BATCHSIZE):
-				running_correct += ((((res[i] != 0) == labels[i]).sum()).item() == 9)
-			#running_correct += (predicted == (labels == 1.)).sum().item()
-			running_count += BATCHSIZE * 9
-
 			# Print statistics
 			if ((batch_idx+1) % STATS_INTERVAL) == 0:
 				train_err = 100.0*(1.0-running_correct / running_count)
-				valid_loss, valid_err = calcError (model, valid_loader)
+				valid_loss, valid_err = calcError(model, valid_loader)
 				print ('Epoch: %d batch: %5d ' % (epoch + 1, batch_idx + 1), end=" ")
 				print ('train-loss: %.3f train-err: %.3f' % (running_loss / STATS_INTERVAL, train_err), end=" ")
 				print (' valid-loss: %.3f valid-err: %.3f' % (valid_loss, valid_err))
