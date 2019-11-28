@@ -22,8 +22,9 @@ class Balls_CF_Detection(Dataset):
 	# The access is _NOT_ shuffled. The Dataloader will need
 	# to do this.
 	def __getitem__(self, index):
-		#img = io.imread("%s/img_%05d.jpg"%(self.dir,index))
-		img = Image.open("%s/img_%05d.jpg"%(self.dir,index + self.image_start))
+		index_file = index + self.image_start
+		#img = io.imread("%s/img_%05d.jpg"%(self.dir,index_file))
+		img = Image.open("%s/img_%05d.jpg"%(self.dir,index_file))
 		img = np.asarray(img)
 		img = img.astype(np.float32)
 		
@@ -36,7 +37,7 @@ class Balls_CF_Detection(Dataset):
 			img = self.transform(img)
 
 		# Load presence and bounding boxes and split it up
-		p_bb = np.load("%s/p_bb_%05d.npy"%(self.dir,index))
+		p_bb = np.load("%s/p_bb_%05d.npy"%(self.dir,index_file))
 		p  = p_bb[:,0]
 		bb = p_bb[:,1:5]
 		return img, p, bb

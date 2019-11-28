@@ -155,8 +155,7 @@ def calcError (net, dataloader):
 		vcount_any += BATCHSIZE * 9
 		#'''
 
-		for i in range(BATCHSIZE):
-			vcorrect += (((res[i] == labels[i]).sum()).item() == 9)
+		vcorrect += sum(row.sum().item() == 9 for row in (res == labels))
 		vcount += BATCHSIZE
 
 	return vloss/len(dataloader), 100.0*(1.0-vcorrect/vcount), 100.0*(1.0-vcorrect_any/vcount_any)
@@ -210,8 +209,7 @@ def main():
 			running_count_any += BATCHSIZE * 9
 			#'''
 
-			for i in range(BATCHSIZE):
-				running_correct += (((res[i] == labels[i]).sum()).item() == 9)
+			running_correct += sum(row.sum().item() == 9 for row in (res == labels))
 			running_count += BATCHSIZE
 
 			# Print statistics
@@ -219,8 +217,8 @@ def main():
 				train_err = 100.0*(1.0-running_correct / running_count)
 				train_err_any = 100.0*(1.0-running_correct_any / running_count_any)
 				valid_loss, valid_err, valid_err_any = calcError(model, valid_loader)
-				print ('Epoch: %d batch: %5d ' % (epoch + 1, batch_idx + 1), end=" ")
-				print ('train-loss: %.3f train-err: %.3f %.3f' % (running_loss / STATS_INTERVAL, train_err, train_err_any), end=" ")
+				print ('Epoch: %d batch: %5d' % (epoch + 1, batch_idx + 1), end=" ")
+				print (' train-loss: %.3f train-err: %.3f %.3f' % (running_loss / STATS_INTERVAL, train_err, train_err_any), end=" ")
 				print (' valid-loss: %.3f valid-err: %.3f %.3f' % (valid_loss, valid_err, valid_err_any))
 
 				'''
