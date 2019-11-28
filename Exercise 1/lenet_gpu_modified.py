@@ -19,7 +19,7 @@ from torchvision import transforms
 
 from dataset_det import Balls_CF_Detection, COLORS#
 
-STATS_INTERVAL = 300
+STATS_INTERVAL = 10
 
 '''
 class MNISTDataset(Dataset):
@@ -77,29 +77,29 @@ train_loader = torch.utils.data.DataLoader(train_dataset,
 	batch_size=BATCHSIZE, shuffle=True)
 '''
 
-BATCHSIZE=10
+BATCHSIZE=250
 
-train_dataset = Balls_CF_Detection("./mini_balls/train", 0, 20000)
+train_dataset = Balls_CF_Detection("./mini_balls/train", 0, 16000) #, transforms.Normalize([128, 128, 128], [3, 3, 3]))
 train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=BATCHSIZE, shuffle=True)
 
-valid_dataset = Balls_CF_Detection("./mini_balls/train", 20000, 21000)
+valid_dataset = Balls_CF_Detection("./mini_balls/train", 16000, 21000) #, transforms.Normalize([128, 128, 128], [3, 3, 3]))
 valid_loader = torch.utils.data.DataLoader(valid_dataset, batch_size=BATCHSIZE, shuffle=True)
 
 
 class LeNet(torch.nn.Module):
 	def __init__(self):
 		super(LeNet, self).__init__()
-		self.conv1 = torch.nn.Conv2d(3, 8, 5, 1) #(3, 12, 5, 1)
-		self.conv2 = torch.nn.Conv2d(8, 12, 5, 1) #(12, 36, 5, 1)
-		self.fc1 = torch.nn.Linear(58080//10, 400) #(174240//10, 400)
-		self.fc2 = torch.nn.Linear(400, 9) #(400, 9)
+		self.conv1 = torch.nn.Conv2d(3, 3, 5, 1) #(3, 12, 5, 1)
+		self.conv2 = torch.nn.Conv2d(3, 5, 3, 1) #(12, 36, 5, 1)
+		self.fc1 = torch.nn.Linear(23*23*5, 50) #(174240//10, 400)
+		self.fc2 = torch.nn.Linear(50, 9) #(400, 9)
 
 	def forward(self, x):
 		x = F.relu(self.conv1(x))
 		x = F.max_pool2d(x, 2, 2)
 		x = F.relu(self.conv2(x))
 		x = F.max_pool2d(x, 2, 2)
-		x = x.view(-1, 58080//10) #(-1, 174240//10)
+		x = x.view(-1, 23*23*5) #(-1, 174240//10)
 		x = F.relu(self.fc1(x))
 		x = self.fc2(x)
 		return F.sigmoid(x) #x
@@ -109,11 +109,11 @@ model = LeNet()
 
 # This criterion combines LogSoftMax and NLLLoss in one single class.
 #crossentropy = torch.nn.CrossEntropyLoss(reduction='mean')
-crossentropy = torch.nn.BCELoss(reduction='mean')#
+crossentropy = torch.nn.BCELoss()# #(reduction='mean')
 
 # Set up the optimizer: stochastic gradient descent
 # with a learning rate of 0.01
-optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
+optimizer = torch.optim.Adam(model.parameters()) #SGD( ... , lr=0.01)
 
 # Setting up tensorboard
 #writer = SummaryWriter('runs/mnist_lenet')
@@ -126,10 +126,14 @@ optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
 
 def calcError (net, dataloader):
 	vloss=0
+	vcorrect_any = 0
 	vcorrect=0
+	vcount_any = 0
 	vcount=0
 	for batch_idx, (data, labels, _) in enumerate(dataloader):
 		y = model(data)
+		loss = crossentropy(y, labels)
+		vloss += loss.item()
 
 		#_, predicted = torch.max(y.data, 1)
 		#vcorrect += (predicted == labels).sum().item()
@@ -140,20 +144,20 @@ def calcError (net, dataloader):
 		res = res.scatter(1, tidx, tvals)
 		'''
 
-		res = (abs(1 - y) < 0.5)
+		#res = (abs(1 - y) < 0.5)
+		res = torch.round(y.data)
 
-		'''
-		vcorrect += (res == (labels == 1.)).sum().item()
-		vcount += BATCHSIZE * 9
-		'''
+		#'''
+		#vcorrect_any += (res == (labels == 1.)).sum().item()
+		vcorrect_any += (res == labels).sum().item()
+		vcount_any += BATCHSIZE * 9
+		#'''
 
 		for i in range(BATCHSIZE):
 			vcorrect += ((((res[i] != 0) == labels[i]).sum()).item() == 9)
 		vcount += BATCHSIZE
 
-		loss = crossentropy(y, labels)
-		vloss += loss.item()
-	return vloss/len(dataloader), 100.0*(1.0-vcorrect/vcount)
+	return vloss/len(dataloader), 100.0*(1.0-vcorrect/vcount), 100.0*(1.0-vcorrect_any/vcount_any)
 
 
 def main():
@@ -161,6 +165,8 @@ def main():
 	running_loss = 0.0
 	running_correct = 0
 	running_count = 0
+	running_correct_any = 0
+	running_count_any = 0
 
 	'''
 	# Add the graph to tensorboard
@@ -178,6 +184,10 @@ def main():
 			#data = data.to("cuda:0") 
 			optimizer.zero_grad()
 			y = model(data)
+			loss = crossentropy(y, labels)
+			loss.backward()
+			running_loss += loss.cpu().item()
+			optimizer.step()
 
 			#_, predicted = torch.max(y.data.cpu(), 1)
 			#running_correct += (predicted == (labels == 1.)).sum().item()
@@ -188,29 +198,27 @@ def main():
 			res = res.scatter(1, tidx, tvals)
 			'''
 
-			res = (abs(1 - y) < 0.5)
+			#res = (abs(1 - y) < 0.5)
+			res = torch.round(y.data)
 
-			'''
-			running_correct += (res == (labels == 1.)).sum().item()
-			running_count += BATCHSIZE * 9
-			'''
+			#'''
+			#running_correct_any += (res == (labels == 1.)).sum().item()
+			running_correct_any += (res == labels).sum().item()
+			running_count_any += BATCHSIZE * 9
+			#'''
 
 			for i in range(BATCHSIZE):
 				running_correct += ((((res[i] != 0) == labels[i]).sum()).item() == 9)
 			running_count += BATCHSIZE
 
-			loss = crossentropy(y, labels)
-			loss.backward()
-			running_loss += loss.cpu().item()
-			optimizer.step()
-
 			# Print statistics
 			if ((batch_idx+1) % STATS_INTERVAL) == 0:
 				train_err = 100.0*(1.0-running_correct / running_count)
-				valid_loss, valid_err = calcError(model, valid_loader)
+				train_err_any = 100.0*(1.0-running_correct_any / running_count_any)
+				valid_loss, valid_err, valid_err_any = calcError(model, valid_loader)
 				print ('Epoch: %d batch: %5d ' % (epoch + 1, batch_idx + 1), end=" ")
-				print ('train-loss: %.3f train-err: %.3f' % (running_loss / STATS_INTERVAL, train_err), end=" ")
-				print (' valid-loss: %.3f valid-err: %.3f' % (valid_loss, valid_err))
+				print ('train-loss: %.3f train-err: %.3f %.3f' % (running_loss / STATS_INTERVAL, train_err, train_err_any), end=" ")
+				print (' valid-loss: %.3f valid-err: %.3f %.3f' % (valid_loss, valid_err, valid_err_any))
 
 				'''
 				# Write statistics to the log file
