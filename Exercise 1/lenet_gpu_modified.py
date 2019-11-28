@@ -105,7 +105,7 @@ class LeNet(torch.nn.Module):
 		return F.sigmoid(x) #x
 
 model = LeNet()
-#model = model.to("cuda:0")
+model = model.to("cuda:0")
 
 # This criterion combines LogSoftMax and NLLLoss in one single class.
 #crossentropy = torch.nn.CrossEntropyLoss(reduction='mean')
@@ -129,6 +129,8 @@ def calcError (net, dataloader):
 	vcorrect=0
 	vcount=0
 	for batch_idx, (data, labels, _) in enumerate(dataloader):
+		data = data.to("cuda:0")
+		labels = labels.to("cuda:0")
 		y = model(data)
 
 		#_, predicted = torch.max(y.data, 1)
@@ -148,7 +150,7 @@ def calcError (net, dataloader):
 		'''
 
 		for i in range(BATCHSIZE):
-			vcorrect += ((((res[i] != 0) == labels[i]).sum()).item() == 9)
+			vcorrect += (((res[i] == (labels[i] > 0.5)).sum()).item() == 9)
 		vcount += BATCHSIZE
 
 		loss = crossentropy(y, labels)
@@ -175,7 +177,8 @@ def main():
 
 		# Cycle through batches
 		for batch_idx, (data, labels, _) in enumerate(train_loader):
-			#data = data.to("cuda:0") 
+			data = data.to("cuda:0")
+			labels = labels.to("cuda:0")
 			optimizer.zero_grad()
 			y = model(data)
 
@@ -196,7 +199,7 @@ def main():
 			'''
 
 			for i in range(BATCHSIZE):
-				running_correct += ((((res[i] != 0) == labels[i]).sum()).item() == 9)
+				running_correct += (((res[i] == (labels[i] > 0.5)).sum()).item() == 9)
 			running_count += BATCHSIZE
 
 			loss = crossentropy(y, labels)
