@@ -25,11 +25,11 @@ BATCHSIZE=250
 useGPU = True
 
 path = "./mini_balls/train"
-valid_dataset = Balls_CF_Detection (path, 16000, 21000) 
+valid_dataset = Balls_CF_Detection (path, 16000, 21000) #, transforms.Normalize([128, 128, 128], [1, 1, 1])) 
 valid_loader = torch.utils.data.DataLoader(valid_dataset,
 	batch_size=BATCHSIZE, shuffle=True)
 
-train_dataset = Balls_CF_Detection (path, 0, 16000)
+train_dataset = Balls_CF_Detection (path, 0, 16000) #, transforms.Normalize([128, 128, 128], [1, 1, 1]))
 train_loader = torch.utils.data.DataLoader(train_dataset,
 	batch_size=BATCHSIZE, shuffle=True)
 
@@ -38,17 +38,17 @@ train_loader = torch.utils.data.DataLoader(train_dataset,
 class LeNet(torch.nn.Module):
 	def __init__(self):
 		super(LeNet, self).__init__()
-		self.conv1 = torch.nn.Conv2d(3, 3, 5, 1)
-		self.conv2 = torch.nn.Conv2d(3, 5, 3, 1)
-		self.fc1 = torch.nn.Linear(23*23*5, 50)
-		self.fc2 = torch.nn.Linear(50, 9)
+		self.conv1 = torch.nn.Conv2d(3, 6, 6, 1)
+		self.conv2 = torch.nn.Conv2d(6, 12, 5, 1)
+		self.fc1 = torch.nn.Linear(75000//BATCHSIZE, 45)
+		self.fc2 = torch.nn.Linear(45, 9)
 
 	def forward(self, x):
 		x = F.relu(self.conv1(x))
-		x = F.max_pool2d(x, 2, 2)
+		x = F.max_pool2d(x, 6, 6)
 		x = F.relu(self.conv2(x))
 		x = F.max_pool2d(x, 2, 2)
-		x = x.view(-1, 23*23*5)
+		x = x.view(BATCHSIZE, 75000//BATCHSIZE)
 		x = F.relu(self.fc1(x))
 		x = self.fc2(x)
 		return torch.sigmoid(x)
