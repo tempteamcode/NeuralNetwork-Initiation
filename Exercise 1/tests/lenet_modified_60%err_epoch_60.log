@@ -1,0 +1,450 @@
+Microsoft Windows [version 10.0.14393]
+(c) 2016 Microsoft Corporation. Tous droits réservés.
+
+C:\Users\nmesnard>cd "C:\Temp\ttcgit\NeuralNetwork-Initiation\Exercise 1"
+
+C:\Temp\ttcgit\NeuralNetwork-Initiation\Exercise 1>C:\Anaconda2\Scripts\activate base
+
+(base) C:\Temp\ttcgit\NeuralNetwork-Initiation\Exercise 1>python lenet_modified_bis.py
+Traceback (most recent call last):
+  File "lenet_modified_bis.py", line 118, in <module>
+    y = model(data)
+  File "C:\Anaconda2\lib\site-packages\torch\nn\modules\module.py", line 493, in __call__
+    result = self.forward(*input, **kwargs)
+  File "lenet_modified_bis.py", line 51, in forward
+    x = x.view(BATCHSIZE, 75000//BATCHSIZE)
+RuntimeError: shape '[250, 300]' is invalid for input of size 62500
+
+(base) C:\Temp\ttcgit\NeuralNetwork-Initiation\Exercise 1>python lenet_modified_bis.py
+Epoch: 1 batch:     1 train-loss: 0.143 train-err: 58.000 100 valid-loss: 1.447 valid-err: 44.224 100
+Epoch: 1 batch:    21 train-loss: 0.851 train-err: 41.569 100
+Epoch: 1 batch:    41 train-loss: 0.656 train-err: 35.118 100
+Epoch: 1 batch:    61 train-loss: 0.644 train-err: 33.667 100
+Epoch: 2 batch:     1 train-loss: 0.128 train-err: 33.511 100 valid-loss: 0.641 valid-err: 33.640 100
+Epoch: 2 batch:    21 train-loss: 0.637 train-err: 33.198 100
+Epoch: 2 batch:    41 train-loss: 0.632 train-err: 32.853 100
+Epoch: 2 batch:    61 train-loss: 0.621 train-err: 32.222 100
+Epoch: 3 batch:     1 train-loss: 0.123 train-err: 31.967 100 valid-loss: 0.618 valid-err: 32.007 100
+Epoch: 3 batch:    21 train-loss: 0.612 train-err: 31.740 100
+Epoch: 3 batch:    41 train-loss: 0.607 train-err: 31.498 100
+Epoch: 3 batch:    61 train-loss: 0.603 train-err: 31.122 100
+Epoch: 4 batch:     1 train-loss: 0.120 train-err: 31.167 100 valid-loss: 0.598 valid-err: 30.749 100
+Epoch: 4 batch:    21 train-loss: 0.591 train-err: 30.536 100
+Epoch: 4 batch:    41 train-loss: 0.589 train-err: 30.484 100
+Epoch: 4 batch:    61 train-loss: 0.587 train-err: 30.647 100
+Epoch: 5 batch:     1 train-loss: 0.117 train-err: 30.244 100 valid-loss: 0.588 valid-err: 30.340 100
+Epoch: 5 batch:    21 train-loss: 0.579 train-err: 30.144 100
+Epoch: 5 batch:    41 train-loss: 0.580 train-err: 30.218 100
+Epoch: 5 batch:    61 train-loss: 0.578 train-err: 30.051 100
+Epoch: 6 batch:     1 train-loss: 0.116 train-err: 30.289 100 valid-loss: 0.580 valid-err: 29.791 100
+Epoch: 6 batch:    21 train-loss: 0.572 train-err: 29.833 100
+Epoch: 6 batch:    41 train-loss: 0.570 train-err: 29.536 100
+Epoch: 6 batch:    61 train-loss: 0.568 train-err: 29.596 100
+Epoch: 7 batch:     1 train-loss: 0.113 train-err: 29.356 100 valid-loss: 0.567 valid-err: 28.951 100
+Epoch: 7 batch:    21 train-loss: 0.561 train-err: 29.156 100
+Epoch: 7 batch:    41 train-loss: 0.558 train-err: 28.864 100
+Epoch: 7 batch:    61 train-loss: 0.553 train-err: 28.338 100
+Epoch: 8 batch:     1 train-loss: 0.110 train-err: 28.600 100 valid-loss: 0.556 valid-err: 28.287 100
+Epoch: 8 batch:    21 train-loss: 0.546 train-err: 28.018 100
+Epoch: 8 batch:    41 train-loss: 0.545 train-err: 27.873 100
+Epoch: 8 batch:    61 train-loss: 0.544 train-err: 27.573 100
+Epoch: 9 batch:     1 train-loss: 0.108 train-err: 28.122 100 valid-loss: 0.544 valid-err: 27.909 100
+Epoch: 9 batch:    21 train-loss: 0.535 train-err: 27.711 100
+Epoch: 9 batch:    41 train-loss: 0.537 train-err: 27.371 100
+Epoch: 9 batch:    61 train-loss: 0.532 train-err: 27.282 100
+Epoch: 10 batch:     1 train-loss: 0.106 train-err: 27.833 100 valid-loss: 0.538 valid-err: 27.251 100
+Epoch: 10 batch:    21 train-loss: 0.526 train-err: 26.987 100
+Epoch: 10 batch:    41 train-loss: 0.522 train-err: 26.738 100
+Epoch: 10 batch:    61 train-loss: 0.521 train-err: 26.540 100
+Epoch: 11 batch:     1 train-loss: 0.103 train-err: 26.089 100 valid-loss: 0.520 valid-err: 26.007 100
+Epoch: 11 batch:    21 train-loss: 0.510 train-err: 26.013 100
+Epoch: 11 batch:    41 train-loss: 0.509 train-err: 25.907 100
+Epoch: 11 batch:    61 train-loss: 0.509 train-err: 25.973 100
+Epoch: 12 batch:     1 train-loss: 0.103 train-err: 26.067 100 valid-loss: 0.516 valid-err: 25.544 100
+Epoch: 12 batch:    21 train-loss: 0.502 train-err: 25.753 100
+Epoch: 12 batch:    41 train-loss: 0.500 train-err: 25.411 100
+Epoch: 12 batch:    61 train-loss: 0.498 train-err: 25.189 100
+Epoch: 13 batch:     1 train-loss: 0.100 train-err: 25.400 100 valid-loss: 0.502 valid-err: 25.100 100
+Epoch: 13 batch:    21 train-loss: 0.491 train-err: 24.756 100
+Epoch: 13 batch:    41 train-loss: 0.493 train-err: 24.976 100
+Epoch: 13 batch:    61 train-loss: 0.495 train-err: 25.053 100
+Epoch: 14 batch:     1 train-loss: 0.099 train-err: 25.189 100 valid-loss: 0.498 valid-err: 24.596  99
+Epoch: 14 batch:    21 train-loss: 0.490 train-err: 24.693 100
+Epoch: 14 batch:    41 train-loss: 0.484 train-err: 24.513 100
+Epoch: 14 batch:    61 train-loss: 0.484 train-err: 24.451 100
+Epoch: 15 batch:     1 train-loss: 0.095 train-err: 24.100 100 valid-loss: 0.492 valid-err: 24.427  99
+Epoch: 15 batch:    21 train-loss: 0.479 train-err: 24.162 100
+Epoch: 15 batch:    41 train-loss: 0.514 train-err: 26.522 100
+Epoch: 15 batch:    61 train-loss: 0.496 train-err: 24.836 100
+Epoch: 16 batch:     1 train-loss: 0.098 train-err: 24.444 100 valid-loss: 0.494 valid-err: 24.553  99
+Epoch: 16 batch:    21 train-loss: 0.476 train-err: 23.771 100
+Epoch: 16 batch:    41 train-loss: 0.478 train-err: 24.153 100
+Epoch: 16 batch:    61 train-loss: 0.477 train-err: 23.898 100
+Epoch: 17 batch:     1 train-loss: 0.097 train-err: 24.422 100 valid-loss: 0.495 valid-err: 24.791  99
+Epoch: 17 batch:    21 train-loss: 0.481 train-err: 24.304 100
+Epoch: 17 batch:    41 train-loss: 0.478 train-err: 24.113 100
+Epoch: 17 batch:    61 train-loss: 0.475 train-err: 23.813 100
+Epoch: 18 batch:     1 train-loss: 0.093 train-err: 23.511 100 valid-loss: 0.479 valid-err: 23.796  98
+Epoch: 18 batch:    21 train-loss: 0.463 train-err: 23.262 100
+Epoch: 18 batch:    41 train-loss: 0.467 train-err: 23.513  99
+Epoch: 18 batch:    61 train-loss: 0.466 train-err: 23.444  99
+Epoch: 19 batch:     1 train-loss: 0.093 train-err: 23.711  99 valid-loss: 0.473 valid-err: 23.369  98
+Epoch: 19 batch:    21 train-loss: 0.456 train-err: 22.684  99
+Epoch: 19 batch:    41 train-loss: 0.450 train-err: 22.289  99
+Epoch: 19 batch:    61 train-loss: 0.442 train-err: 21.978  99
+Epoch: 20 batch:     1 train-loss: 0.088 train-err: 22.100  99 valid-loss: 0.450 valid-err: 22.011  96
+Epoch: 20 batch:    21 train-loss: 0.436 train-err: 21.564  99
+Epoch: 20 batch:    41 train-loss: 0.442 train-err: 21.936  99
+Epoch: 20 batch:    61 train-loss: 0.437 train-err: 21.727  99
+Epoch: 21 batch:     1 train-loss: 0.090 train-err: 22.433  99 valid-loss: 0.449 valid-err: 21.927  96
+Epoch: 21 batch:    21 train-loss: 0.434 train-err: 21.316  99
+Epoch: 21 batch:    41 train-loss: 0.432 train-err: 21.078  99
+Epoch: 21 batch:    61 train-loss: 0.428 train-err: 21.113  99
+Epoch: 22 batch:     1 train-loss: 0.087 train-err: 21.611  99 valid-loss: 0.497 valid-err: 24.258  96
+Epoch: 22 batch:    21 train-loss: 0.579 train-err: 29.871  99
+Epoch: 22 batch:    41 train-loss: 0.525 train-err: 26.489  99
+Epoch: 22 batch:    61 train-loss: 0.493 train-err: 25.158  99
+Traceback (most recent call last):
+  File "lenet_modified_bis.py", line 135, in <module>
+    valid_loss, valid_err, valid_err_all = calcError(model, valid_loader)
+  File "lenet_modified_bis.py", line 81, in calcError
+    for batch_idx, (data, labels, _) in enumerate(dataloader):
+  File "C:\Anaconda2\lib\site-packages\torch\utils\data\dataloader.py", line 560, in __next__
+    batch = self.collate_fn([self.dataset[i] for i in indices])
+  File "C:\Anaconda2\lib\site-packages\torch\utils\data\dataloader.py", line 560, in <listcomp>
+    batch = self.collate_fn([self.dataset[i] for i in indices])
+  File "C:\Temp\ttcgit\NeuralNetwork-Initiation\Exercise 1\dataset_det.py", line 40, in __getitem__
+    p_bb = np.load("%s/p_bb_%05d.npy"%(self.dir,index_file))
+  File "C:\Anaconda2\lib\site-packages\numpy\lib\npyio.py", line 447, in load
+    pickle_kwargs=pickle_kwargs)
+  File "C:\Anaconda2\lib\site-packages\numpy\lib\format.py", line 686, in read_array
+    shape, fortran_order, dtype = _read_array_header(fp, version)
+  File "C:\Anaconda2\lib\site-packages\numpy\lib\format.py", line 546, in _read_array_header
+    d = safe_eval(header)
+  File "C:\Anaconda2\lib\site-packages\numpy\lib\utils.py", line 1113, in safe_eval
+    return ast.literal_eval(source)
+  File "C:\Anaconda2\lib\ast.py", line 85, in literal_eval
+    return _convert(node_or_string)
+  File "C:\Anaconda2\lib\ast.py", line 66, in _convert
+    in zip(node.keys, node.values))
+  File "C:\Anaconda2\lib\ast.py", line 65, in <genexpr>
+    return dict((_convert(k), _convert(v)) for k, v
+  File "C:\Anaconda2\lib\ast.py", line 59, in _convert
+    return tuple(map(_convert, node.elts))
+  File "C:\Anaconda2\lib\ast.py", line 56, in _convert
+    elif isinstance(node, Num):
+KeyboardInterrupt
+
+(base) C:\Temp\ttcgit\NeuralNetwork-Initiation\Exercise 1>python lenet_modified_bis.py
+Traceback (most recent call last):
+  File "lenet_modified_bis.py", line 118, in <module>
+    y = model(data)
+  File "C:\Anaconda2\lib\site-packages\torch\nn\modules\module.py", line 493, in __call__
+    result = self.forward(*input, **kwargs)
+  File "lenet_modified_bis.py", line 51, in forward
+    x = x.view(BATCHSIZE, 62500//BATCHSIZE)
+RuntimeError: shape '[200, 312]' is invalid for input of size 50000
+
+(base) C:\Temp\ttcgit\NeuralNetwork-Initiation\Exercise 1>python lenet_modified_bis.py
+Epoch: 1 batch:     1 train-loss: 0.093 train-err: 52.222 100 valid-loss: 1.456 valid-err: 49.136 100
+Epoch: 1 batch:    31 train-loss: 0.746 train-err: 38.463 100
+Epoch: 1 batch:    61 train-loss: 0.642 train-err: 33.461 100
+Epoch: 2 batch:     1 train-loss: 0.426 train-err: 33.336 100 valid-loss: 0.639 valid-err: 33.329 100
+Epoch: 2 batch:    31 train-loss: 0.638 train-err: 33.331 100
+Epoch: 2 batch:    61 train-loss: 0.635 train-err: 33.289 100
+Epoch: 3 batch:     1 train-loss: 0.422 train-err: 33.244 100 valid-loss: 0.633 valid-err: 33.240 100
+Epoch: 3 batch:    31 train-loss: 0.630 train-err: 33.022 100
+Epoch: 3 batch:    61 train-loss: 0.622 train-err: 32.876 100
+Epoch: 4 batch:     1 train-loss: 0.410 train-err: 32.286 100 valid-loss: 0.612 valid-err: 31.802 100
+Epoch: 4 batch:    31 train-loss: 0.607 train-err: 31.759 100
+Traceback (most recent call last):
+  File "lenet_modified_bis.py", line 113, in <module>
+    for batch_idx, (data, labels, _) in enumerate(train_loader):
+  File "C:\Anaconda2\lib\site-packages\torch\utils\data\dataloader.py", line 560, in __next__
+    batch = self.collate_fn([self.dataset[i] for i in indices])
+  File "C:\Anaconda2\lib\site-packages\torch\utils\data\dataloader.py", line 560, in <listcomp>
+    batch = self.collate_fn([self.dataset[i] for i in indices])
+  File "C:\Temp\ttcgit\NeuralNetwork-Initiation\Exercise 1\dataset_det.py", line 40, in __getitem__
+    p_bb = np.load("%s/p_bb_%05d.npy"%(self.dir,index_file))
+  File "C:\Anaconda2\lib\site-packages\numpy\lib\npyio.py", line 447, in load
+    pickle_kwargs=pickle_kwargs)
+  File "C:\Anaconda2\lib\site-packages\numpy\lib\format.py", line 686, in read_array
+    shape, fortran_order, dtype = _read_array_header(fp, version)
+  File "C:\Anaconda2\lib\site-packages\numpy\lib\format.py", line 544, in _read_array_header
+    header = _filter_header(header)
+  File "C:\Anaconda2\lib\site-packages\numpy\lib\format.py", line 517, in _filter_header
+    return tokenize.untokenize(tokens)[:-1]
+  File "C:\Anaconda2\lib\tokenize.py", line 338, in untokenize
+    out = ut.untokenize(iterable)
+  File "C:\Anaconda2\lib\tokenize.py", line 274, in untokenize
+    self.prev_row, self.prev_col = end
+KeyboardInterrupt
+
+(base) C:\Temp\ttcgit\NeuralNetwork-Initiation\Exercise 1>python lenet_modified_bis.py
+Traceback (most recent call last):
+  File "lenet_modified_bis.py", line 118, in <module>
+    y = model(data)
+  File "C:\Anaconda2\lib\site-packages\torch\nn\modules\module.py", line 493, in __call__
+    result = self.forward(*input, **kwargs)
+  File "lenet_modified_bis.py", line 49, in forward
+    x = F.relu(self.conv2(x))
+  File "C:\Anaconda2\lib\site-packages\torch\nn\modules\module.py", line 493, in __call__
+    result = self.forward(*input, **kwargs)
+  File "C:\Anaconda2\lib\site-packages\torch\nn\modules\conv.py", line 338, in forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size 8 5 4 4, expected input[200, 4, 15, 15] to have 5 channels, but got 4 channels instead
+
+(base) C:\Temp\ttcgit\NeuralNetwork-Initiation\Exercise 1>python lenet_modified_bis.py
+Traceback (most recent call last):
+  File "lenet_modified_bis.py", line 118, in <module>
+    y = model(data)
+  File "C:\Anaconda2\lib\site-packages\torch\nn\modules\module.py", line 493, in __call__
+    result = self.forward(*input, **kwargs)
+  File "lenet_modified_bis.py", line 51, in forward
+    x = x.view(BATCHSIZE, 250)
+RuntimeError: shape '[200, 250]' is invalid for input of size 57600
+
+(base) C:\Temp\ttcgit\NeuralNetwork-Initiation\Exercise 1>python lenet_modified_bis.py
+Epoch: 1 batch:     1 train-loss: 0.032 train-err: 45.278  99 valid-loss: 0.848 valid-err: 39.749 100
+Epoch: 1 batch:    31 train-loss: 0.677 train-err: 37.272 100
+Epoch: 1 batch:    61 train-loss: 0.643 train-err: 33.437 100
+Epoch: 2 batch:     1 train-loss: 0.425 train-err: 33.314 100 valid-loss: 0.637 valid-err: 33.316 100
+Epoch: 2 batch:    31 train-loss: 0.636 train-err: 33.320 100
+Epoch: 2 batch:    61 train-loss: 0.628 train-err: 32.798 100
+Epoch: 3 batch:     1 train-loss: 0.406 train-err: 31.175 100 valid-loss: 0.595 valid-err: 29.938 100
+Epoch: 3 batch:    31 train-loss: 0.575 train-err: 29.165 100
+Epoch: 3 batch:    61 train-loss: 0.545 train-err: 28.237 100
+Epoch: 4 batch:     1 train-loss: 0.367 train-err: 28.458 100 valid-loss: 0.542 valid-err: 28.007 100
+Epoch: 4 batch:    31 train-loss: 0.533 train-err: 27.902 100
+Epoch: 4 batch:    61 train-loss: 0.523 train-err: 27.398 100
+Epoch: 5 batch:     1 train-loss: 0.345 train-err: 27.197 100 valid-loss: 0.510 valid-err: 26.422 100
+Epoch: 5 batch:    31 train-loss: 0.503 train-err: 26.443 100
+Epoch: 5 batch:    61 train-loss: 0.498 train-err: 26.363 100
+Epoch: 6 batch:     1 train-loss: 0.329 train-err: 25.947 100 valid-loss: 0.488 valid-err: 25.373 100
+Epoch: 6 batch:    31 train-loss: 0.482 train-err: 25.263 100
+Epoch: 6 batch:    61 train-loss: 0.471 train-err: 24.730 100
+Epoch: 7 batch:     1 train-loss: 0.305 train-err: 23.997 100 valid-loss: 0.457 valid-err: 23.782  98
+Epoch: 7 batch:    31 train-loss: 0.457 train-err: 24.170 100
+Epoch: 7 batch:    61 train-loss: 0.451 train-err: 23.643 100
+Epoch: 8 batch:     1 train-loss: 0.297 train-err: 23.400 100 valid-loss: 0.440 valid-err: 22.467  97
+Epoch: 8 batch:    31 train-loss: 0.438 train-err: 22.978  99
+Epoch: 8 batch:    61 train-loss: 0.428 train-err: 22.231  99
+Epoch: 9 batch:     1 train-loss: 0.280 train-err: 21.808  99 valid-loss: 0.413 valid-err: 21.113  95
+Epoch: 9 batch:    31 train-loss: 0.411 train-err: 21.256  99
+Epoch: 9 batch:    61 train-loss: 0.400 train-err: 20.659  99
+Epoch: 10 batch:     1 train-loss: 0.264 train-err: 20.456  99 valid-loss: 0.392 valid-err: 19.480  95
+Epoch: 10 batch:    31 train-loss: 0.380 train-err: 19.411  99
+Epoch: 10 batch:    61 train-loss: 0.373 train-err: 19.046  98
+Epoch: 11 batch:     1 train-loss: 0.244 train-err: 18.789  98 valid-loss: 0.370 valid-err: 18.391  96
+Epoch: 11 batch:    31 train-loss: 0.359 train-err: 18.406  98
+Epoch: 11 batch:    61 train-loss: 0.350 train-err: 17.935  98
+Epoch: 12 batch:     1 train-loss: 0.229 train-err: 17.678  98 valid-loss: 0.344 valid-err: 17.264  93
+Epoch: 12 batch:    31 train-loss: 0.338 train-err: 17.235  98
+Epoch: 12 batch:    61 train-loss: 0.344 train-err: 17.572  98
+Epoch: 13 batch:     1 train-loss: 0.223 train-err: 17.119  98 valid-loss: 0.332 valid-err: 16.722  91
+Epoch: 13 batch:    31 train-loss: 0.327 train-err: 16.802  97
+Epoch: 13 batch:    61 train-loss: 0.321 train-err: 16.274  97
+Epoch: 14 batch:     1 train-loss: 0.218 train-err: 16.478  97 valid-loss: 0.326 valid-err: 16.209  92
+Epoch: 14 batch:    31 train-loss: 0.311 train-err: 15.531  97
+Epoch: 14 batch:    61 train-loss: 0.304 train-err: 15.074  97
+Epoch: 15 batch:     1 train-loss: 0.200 train-err: 14.842  96 valid-loss: 0.330 valid-err: 16.478  89
+Epoch: 15 batch:    31 train-loss: 0.298 train-err: 14.828  96
+Epoch: 15 batch:    61 train-loss: 0.288 train-err: 14.248  96
+Epoch: 16 batch:     1 train-loss: 0.185 train-err: 13.667  96 valid-loss: 0.286 valid-err: 13.824  85
+Epoch: 16 batch:    31 train-loss: 0.373 train-err: 17.161  95
+Epoch: 16 batch:    61 train-loss: 0.415 train-err: 21.561  95
+Epoch: 17 batch:     1 train-loss: 0.249 train-err: 18.297  95 valid-loss: 0.374 valid-err: 18.113  90
+Epoch: 17 batch:    31 train-loss: 0.357 train-err: 17.489  95
+Epoch: 17 batch:    61 train-loss: 0.330 train-err: 16.148  95
+Epoch: 18 batch:     1 train-loss: 0.214 train-err: 15.836  95 valid-loss: 0.327 valid-err: 15.916  87
+Epoch: 18 batch:    31 train-loss: 0.309 train-err: 15.248  95
+Epoch: 18 batch:    61 train-loss: 0.306 train-err: 15.078  94
+Epoch: 19 batch:     1 train-loss: 0.195 train-err: 14.425  94 valid-loss: 0.301 valid-err: 14.429  85
+Epoch: 19 batch:    31 train-loss: 0.277 train-err: 13.513  94
+Epoch: 19 batch:    61 train-loss: 0.274 train-err: 13.330  94
+Epoch: 20 batch:     1 train-loss: 0.181 train-err: 13.467  94 valid-loss: 0.281 valid-err: 13.560  83
+Epoch: 20 batch:    31 train-loss: 0.262 train-err: 12.872  93
+Epoch: 20 batch:    61 train-loss: 0.266 train-err: 13.130  93
+Epoch: 21 batch:     1 train-loss: 0.172 train-err: 12.678  93 valid-loss: 0.269 valid-err: 13.207  82
+Epoch: 21 batch:    31 train-loss: 0.247 train-err: 12.091  93
+Epoch: 21 batch:    61 train-loss: 0.247 train-err: 11.898  92
+Epoch: 22 batch:     1 train-loss: 0.173 train-err: 12.583  92 valid-loss: 0.277 valid-err: 13.360  82
+Epoch: 22 batch:    31 train-loss: 0.243 train-err: 11.878  92
+Epoch: 22 batch:    61 train-loss: 0.240 train-err: 11.694  92
+Epoch: 23 batch:     1 train-loss: 0.161 train-err: 11.769  91 valid-loss: 0.259 valid-err: 12.533  80
+Epoch: 23 batch:    31 train-loss: 0.232 train-err: 11.356  91
+Epoch: 23 batch:    61 train-loss: 0.231 train-err: 11.356  91
+Epoch: 24 batch:     1 train-loss: 0.157 train-err: 11.297  91 valid-loss: 0.251 valid-err: 12.284  79
+Epoch: 24 batch:    31 train-loss: 0.222 train-err: 10.852  91
+Epoch: 24 batch:    61 train-loss: 0.228 train-err: 11.287  90
+Epoch: 25 batch:     1 train-loss: 0.152 train-err: 11.111  90 valid-loss: 0.246 valid-err: 11.867  79
+Epoch: 25 batch:    31 train-loss: 0.218 train-err: 10.685  90
+Epoch: 25 batch:    61 train-loss: 0.226 train-err: 11.209  90
+Epoch: 26 batch:     1 train-loss: 0.151 train-err: 11.094  90 valid-loss: 0.242 valid-err: 11.938  78
+Epoch: 26 batch:    31 train-loss: 0.217 train-err: 10.643  89
+Epoch: 26 batch:    61 train-loss: 0.224 train-err: 11.054  89
+Epoch: 27 batch:     1 train-loss: 0.149 train-err: 11.058  89 valid-loss: 0.245 valid-err: 11.764  77
+Epoch: 27 batch:    31 train-loss: 0.234 train-err: 11.346  89
+Epoch: 27 batch:    61 train-loss: 0.223 train-err: 11.015  89
+Epoch: 28 batch:     1 train-loss: 0.144 train-err: 10.608  88 valid-loss: 0.238 valid-err: 11.467  76
+Epoch: 28 batch:    31 train-loss: 0.214 train-err: 10.470  88
+Epoch: 28 batch:    61 train-loss: 0.211 train-err: 10.348  88
+Epoch: 29 batch:     1 train-loss: 0.139 train-err: 10.419  88 valid-loss: 0.237 valid-err: 11.389  75
+Epoch: 29 batch:    31 train-loss: 0.204 train-err: 10.072  88
+Epoch: 29 batch:    61 train-loss: 0.205 train-err: 10.174  87
+Epoch: 30 batch:     1 train-loss: 0.144 train-err: 10.667  87 valid-loss: 0.235 valid-err: 11.389  75
+Epoch: 30 batch:    31 train-loss: 0.205 train-err: 10.254  87
+Epoch: 30 batch:    61 train-loss: 0.210 train-err: 10.281  87
+Epoch: 31 batch:     1 train-loss: 0.139 train-err: 10.289  87 valid-loss: 0.236 valid-err: 11.411  73
+Epoch: 31 batch:    31 train-loss: 0.200 train-err: 9.981  86
+Epoch: 31 batch:    61 train-loss: 0.206 train-err: 10.089  86
+Epoch: 32 batch:     1 train-loss: 0.137 train-err: 10.128  86 valid-loss: 0.243 valid-err: 11.538  75
+Epoch: 32 batch:    31 train-loss: 0.202 train-err: 9.998  86
+Epoch: 32 batch:    61 train-loss: 0.200 train-err: 10.015  86
+Epoch: 33 batch:     1 train-loss: 0.132 train-err: 9.858  86 valid-loss: 0.232 valid-err: 11.373  74
+Epoch: 33 batch:    31 train-loss: 0.204 train-err: 9.824  85
+Epoch: 33 batch:    61 train-loss: 0.198 train-err: 9.963  85
+Epoch: 34 batch:     1 train-loss: 0.133 train-err: 9.911  85 valid-loss: 0.233 valid-err: 11.218  71
+Epoch: 34 batch:    31 train-loss: 0.192 train-err: 9.533  85
+Epoch: 34 batch:    61 train-loss: 0.196 train-err: 9.765  85
+Epoch: 35 batch:     1 train-loss: 0.132 train-err: 9.853  85 valid-loss: 0.233 valid-err: 11.316  73
+Epoch: 35 batch:    31 train-loss: 0.190 train-err: 9.485  84
+Epoch: 35 batch:    61 train-loss: 0.196 train-err: 9.709  84
+Epoch: 36 batch:     1 train-loss: 0.130 train-err: 9.642  84 valid-loss: 0.235 valid-err: 11.340  74
+Epoch: 36 batch:    31 train-loss: 0.190 train-err: 9.515  84
+Epoch: 36 batch:    61 train-loss: 0.195 train-err: 9.670  84
+Epoch: 37 batch:     1 train-loss: 0.135 train-err: 9.947  84 valid-loss: 0.268 valid-err: 12.324  75
+Epoch: 37 batch:    31 train-loss: 0.208 train-err: 10.180  83
+Epoch: 37 batch:    61 train-loss: 0.204 train-err: 10.002  83
+Epoch: 38 batch:     1 train-loss: 0.135 train-err: 9.989  83 valid-loss: 0.236 valid-err: 11.338  73
+Epoch: 38 batch:    31 train-loss: 0.186 train-err: 9.041  83
+Epoch: 38 batch:    61 train-loss: 0.187 train-err: 9.220  83
+Epoch: 39 batch:     1 train-loss: 0.126 train-err: 9.292  83 valid-loss: 0.228 valid-err: 10.900  72
+Epoch: 39 batch:    31 train-loss: 0.183 train-err: 9.078  82
+Epoch: 39 batch:    61 train-loss: 0.184 train-err: 9.200  82
+Epoch: 40 batch:     1 train-loss: 0.122 train-err: 9.175  82 valid-loss: 0.225 valid-err: 10.851  70
+Epoch: 40 batch:    31 train-loss: 0.175 train-err: 8.694  82
+Epoch: 40 batch:    61 train-loss: 0.182 train-err: 9.135  82
+Epoch: 41 batch:     1 train-loss: 0.122 train-err: 9.131  82 valid-loss: 0.229 valid-err: 10.956  71
+Epoch: 41 batch:    31 train-loss: 0.178 train-err: 8.815  81
+Epoch: 41 batch:    61 train-loss: 0.178 train-err: 8.813  81
+Epoch: 42 batch:     1 train-loss: 0.120 train-err: 9.053  81 valid-loss: 0.225 valid-err: 10.871  69
+Epoch: 42 batch:    31 train-loss: 0.181 train-err: 8.915  81
+Epoch: 42 batch:    61 train-loss: 0.190 train-err: 9.144  81
+Epoch: 43 batch:     1 train-loss: 0.121 train-err: 8.894  81 valid-loss: 0.224 valid-err: 10.849  69
+Epoch: 43 batch:    31 train-loss: 0.171 train-err: 8.450  80
+Epoch: 43 batch:    61 train-loss: 0.177 train-err: 8.817  80
+Epoch: 44 batch:     1 train-loss: 0.242 train-err: 11.939  80 valid-loss: 0.508 valid-err: 19.440  86
+Epoch: 44 batch:    31 train-loss: 0.388 train-err: 18.363  80
+Epoch: 44 batch:    61 train-loss: 0.295 train-err: 14.463  80
+Epoch: 45 batch:     1 train-loss: 0.179 train-err: 13.150  80 valid-loss: 0.286 valid-err: 13.936  76
+Epoch: 45 batch:    31 train-loss: 0.244 train-err: 11.833  80
+Epoch: 45 batch:    61 train-loss: 0.225 train-err: 10.930  80
+Epoch: 46 batch:     1 train-loss: 0.144 train-err: 10.703  80 valid-loss: 0.250 valid-err: 11.982  72
+Epoch: 46 batch:    31 train-loss: 0.204 train-err: 10.080  80
+Epoch: 46 batch:    61 train-loss: 0.209 train-err: 10.254  80
+Epoch: 47 batch:     1 train-loss: 0.139 train-err: 10.111  80 valid-loss: 0.244 valid-err: 11.900  72
+Epoch: 47 batch:    31 train-loss: 0.196 train-err: 9.672  79
+Epoch: 47 batch:    61 train-loss: 0.190 train-err: 9.356  79
+Epoch: 48 batch:     1 train-loss: 0.122 train-err: 9.011  79 valid-loss: 0.220 valid-err: 10.504  68
+Epoch: 48 batch:    31 train-loss: 0.172 train-err: 8.448  79
+Epoch: 48 batch:    61 train-loss: 0.174 train-err: 8.720  79
+Epoch: 49 batch:     1 train-loss: 0.113 train-err: 8.389  79 valid-loss: 0.217 valid-err: 10.436  66
+Epoch: 49 batch:    31 train-loss: 0.165 train-err: 8.089  79
+Epoch: 49 batch:    61 train-loss: 0.165 train-err: 8.074  78
+Epoch: 50 batch:     1 train-loss: 0.112 train-err: 8.319  78 valid-loss: 0.211 valid-err: 10.131  65
+Epoch: 50 batch:    31 train-loss: 0.157 train-err: 7.770  78
+Epoch: 50 batch:    61 train-loss: 0.162 train-err: 8.050  78
+Epoch: 51 batch:     1 train-loss: 0.112 train-err: 8.325  78 valid-loss: 0.216 valid-err: 10.564  65
+Epoch: 51 batch:    31 train-loss: 0.159 train-err: 7.869  78
+Epoch: 51 batch:    61 train-loss: 0.160 train-err: 7.911  78
+Epoch: 52 batch:     1 train-loss: 0.108 train-err: 8.158  77 valid-loss: 0.222 valid-err: 10.522  65
+Epoch: 52 batch:    31 train-loss: 0.156 train-err: 7.676  77
+Epoch: 52 batch:    61 train-loss: 0.159 train-err: 7.824  77
+Epoch: 53 batch:     1 train-loss: 0.109 train-err: 8.136  77 valid-loss: 0.215 valid-err: 10.149  62
+Epoch: 53 batch:    31 train-loss: 0.154 train-err: 7.480  77
+Epoch: 53 batch:    61 train-loss: 0.157 train-err: 7.648  77
+Epoch: 54 batch:     1 train-loss: 0.106 train-err: 7.911  76 valid-loss: 0.210 valid-err: 10.060  62
+Epoch: 54 batch:    31 train-loss: 0.153 train-err: 7.539  76
+Epoch: 54 batch:    61 train-loss: 0.162 train-err: 7.957  76
+Epoch: 55 batch:     1 train-loss: 0.104 train-err: 7.836  76 valid-loss: 0.212 valid-err: 9.982  60
+Epoch: 55 batch:    31 train-loss: 0.148 train-err: 7.285  76
+Epoch: 55 batch:    61 train-loss: 0.152 train-err: 7.446  76
+Epoch: 56 batch:     1 train-loss: 0.101 train-err: 7.556  76 valid-loss: 0.209 valid-err: 9.798  59
+Epoch: 56 batch:    31 train-loss: 0.145 train-err: 7.167  75
+Epoch: 56 batch:    61 train-loss: 0.147 train-err: 7.252  75
+Epoch: 57 batch:     1 train-loss: 0.098 train-err: 7.189  75 valid-loss: 0.207 valid-err: 9.622  58
+Epoch: 57 batch:    31 train-loss: 0.143 train-err: 7.089  75
+Epoch: 57 batch:    61 train-loss: 0.150 train-err: 7.333  75
+Epoch: 58 batch:     1 train-loss: 0.101 train-err: 7.156  75 valid-loss: 0.208 valid-err: 9.642  59
+Epoch: 58 batch:    31 train-loss: 0.144 train-err: 7.041  74
+Epoch: 58 batch:    61 train-loss: 0.144 train-err: 7.011  74
+Epoch: 59 batch:     1 train-loss: 0.096 train-err: 6.981  74 valid-loss: 0.206 valid-err: 9.484  57
+Epoch: 59 batch:    31 train-loss: 0.136 train-err: 6.587  74
+Epoch: 59 batch:    61 train-loss: 0.143 train-err: 7.007  74
+Epoch: 60 batch:     1 train-loss: 0.096 train-err: 6.925  74 valid-loss: 0.204 valid-err: 9.358  56
+Epoch: 60 batch:    31 train-loss: 0.138 train-err: 6.594  73
+Epoch: 60 batch:    61 train-loss: 0.143 train-err: 6.928  73
+Epoch: 61 batch:     1 train-loss: 0.098 train-err: 7.097  73 valid-loss: 0.207 valid-err: 9.651  58
+Epoch: 61 batch:    31 train-loss: 0.135 train-err: 6.524  73
+Epoch: 61 batch:    61 train-loss: 0.140 train-err: 6.735  73
+Epoch: 62 batch:     1 train-loss: 0.097 train-err: 6.881  73 valid-loss: 0.227 valid-err: 10.082  58
+Epoch: 62 batch:    31 train-loss: 0.140 train-err: 6.700  72
+Epoch: 62 batch:    61 train-loss: 0.139 train-err: 6.754  72
+Epoch: 63 batch:     1 train-loss: 0.093 train-err: 6.814  72 valid-loss: 0.205 valid-err: 9.444  57
+Epoch: 63 batch:    31 train-loss: 0.160 train-err: 7.394  72
+Epoch: 63 batch:    61 train-loss: 0.149 train-err: 7.031  72
+Epoch: 64 batch:     1 train-loss: 0.092 train-err: 6.678  72 valid-loss: 0.204 valid-err: 9.464  56
+Epoch: 64 batch:    31 train-loss: 0.133 train-err: 6.300  72
+Epoch: 64 batch:    61 train-loss: 0.130 train-err: 6.330  71
+Epoch: 65 batch:     1 train-loss: 0.091 train-err: 6.683  71 valid-loss: 0.198 valid-err: 9.140  55
+Epoch: 65 batch:    31 train-loss: 0.125 train-err: 5.850  71
+Epoch: 65 batch:    61 train-loss: 0.133 train-err: 6.480  71
+Epoch: 66 batch:     1 train-loss: 0.090 train-err: 6.417  71 valid-loss: 0.201 valid-err: 9.242  55
+Epoch: 66 batch:    31 train-loss: 0.129 train-err: 6.161  71
+Epoch: 66 batch:    61 train-loss: 0.128 train-err: 6.043  71
+Epoch: 67 batch:     1 train-loss: 0.086 train-err: 6.172  70 valid-loss: 0.207 valid-err: 9.229  54
+Epoch: 67 batch:    31 train-loss: 0.125 train-err: 5.950  70
+Epoch: 67 batch:    61 train-loss: 0.130 train-err: 6.183  70
+Epoch: 68 batch:     1 train-loss: 0.088 train-err: 6.319  70 valid-loss: 0.200 valid-err: 8.989  52
+Epoch: 68 batch:    31 train-loss: 0.122 train-err: 5.750  70
+Epoch: 68 batch:    61 train-loss: 0.149 train-err: 6.769  70
+Epoch: 69 batch:     1 train-loss: 0.103 train-err: 7.111  70 valid-loss: 0.208 valid-err: 9.287  55
+Epoch: 69 batch:    31 train-loss: 0.126 train-err: 5.928  69
+Epoch: 69 batch:    61 train-loss: 0.127 train-err: 6.033  69
+Epoch: 70 batch:     1 train-loss: 0.087 train-err: 6.081  69 valid-loss: 0.205 valid-err: 9.229  53
+Epoch: 70 batch:    31 train-loss: 0.123 train-err: 5.789  69
+Epoch: 70 batch:    61 train-loss: 0.125 train-err: 5.913  69
+Epoch: 71 batch:     1 train-loss: 0.087 train-err: 6.283  69 valid-loss: 0.201 valid-err: 8.913  52
+Epoch: 71 batch:    31 train-loss: 0.119 train-err: 5.546  69
+Epoch: 71 batch:    61 train-loss: 0.123 train-err: 5.863  68
+Epoch: 72 batch:     1 train-loss: 0.085 train-err: 6.067  68 valid-loss: 0.203 valid-err: 9.127  53
+Epoch: 72 batch:    31 train-loss: 0.121 train-err: 5.630  68
+Epoch: 72 batch:    61 train-loss: 0.240 train-err: 10.096  68
+Epoch: 73 batch:     1 train-loss: 0.102 train-err: 7.206  68 valid-loss: 0.207 valid-err: 9.318  56
+Epoch: 73 batch:    31 train-loss: 0.127 train-err: 5.963  68
+Epoch: 73 batch:    61 train-loss: 0.125 train-err: 5.907  68
+Epoch: 74 batch:     1 train-loss: 0.082 train-err: 5.981  68 valid-loss: 0.206 valid-err: 9.127  53
+Epoch: 74 batch:    31 train-loss: 0.120 train-err: 5.731  68
+Epoch: 74 batch:    61 train-loss: 0.119 train-err: 5.543  67
+Epoch: 75 batch:     1 train-loss: 0.083 train-err: 5.842  67 valid-loss: 0.198 valid-err: 8.658  51
+Epoch: 75 batch:    31 train-loss: 0.116 train-err: 5.398  67
+Epoch: 75 batch:    61 train-loss: 0.122 train-err: 5.748  67
+Epoch: 76 batch:     1 train-loss: 0.082 train-err: 5.706  67 valid-loss: 0.205 valid-err: 8.929  51
+Epoch: 76 batch:    31 train-loss: 0.121 train-err: 5.765  67
+Epoch: 76 batch:    61 train-loss: 0.122 train-err: 5.680  67
+Epoch: 77 batch:     1 train-loss: 0.080 train-err: 5.536  66 valid-loss: 0.200 valid-err: 8.787  51
+Epoch: 77 batch:    31 train-loss: 0.115 train-err: 5.365  66
+Epoch: 77 batch:    61 train-loss: 0.120 train-err: 5.694  66
+Epoch: 78 batch:     1 train-loss: 0.080 train-err: 5.772  66 valid-loss: 0.203 valid-err: 8.736  50
+Epoch: 78 batch:    31 train-loss: 0.112 train-err: 5.246  66
+Epoch: 78 batch:    61 train-loss: 0.120 train-err: 5.628  66
+Epoch: 79 batch:     1 train-loss: 0.076 train-err: 5.372  66 valid-loss: 0.207 valid-err: 8.851  52
+Epoch: 79 batch:    31 train-loss: 0.114 train-err: 5.287  66
+Epoch: 79 batch:    61 train-loss: 0.115 train-err: 5.406  65
+Epoch: 80 batch:     1 train-loss: 0.081 train-err: 5.692  65 valid-loss: 0.209 valid-err: 8.820  52
+Epoch: 80 batch:    31 train-loss: 0.139 train-err: 6.217  65
+Epoch: 80 batch:    61 train-loss: 0.122 train-err: 5.767  65
+Epoch: 81 batch:     1 train-loss: 0.082 train-err: 5.753  65 valid-loss: 0.210 valid-err: 8.869  51
+Epoch: 81 batch:    31 train-loss: 0.110 train-err: 5.087  65
+Epoch: 81 batch:    61 train-loss: 0.118 train-err: 5.496  65
